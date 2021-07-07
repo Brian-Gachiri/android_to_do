@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.brige.todoapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp">
         <activity
+            android:name=".NewToDoActivity"
+            android:label="Work Work Work Work"/>
+        <activity
             android:name=".ToDoDetailsActivity"
             android:label="@string/title_activity_to_do_details"
-            android:theme="@style/Theme.ToDoApp.NoActionBar"></activity>
+            android:theme="@style/Theme.ToDoApp.NoActionBar" />
         <activity
             android:name=".ToDoActivity"
             android:label="@string/title_activity_to_do"
