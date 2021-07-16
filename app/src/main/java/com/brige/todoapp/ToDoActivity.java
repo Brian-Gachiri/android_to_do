@@ -3,6 +3,7 @@ package com.brige.todoapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.brige.todoapp.models.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -18,6 +19,7 @@ public class ToDoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,5 +42,6 @@ public class ToDoActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }
