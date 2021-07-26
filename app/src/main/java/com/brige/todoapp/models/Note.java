@@ -9,8 +9,15 @@ public class Note {
     private String updated_at;
     private String status;
 
+    /** This is a constructor used to give us access to the
+     * class' attributes and methods
+     */
     public Note() {
     }
+
+    /**Getters and setters
+     *
+     */
 
     public int getId() {
         return id;

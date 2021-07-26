@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp">
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity
             android:name=".NewToDoActivity"
-            android:label="Work Work Work Work"/>
+            android:label="Work Work Work Work" />
         <activity
             android:name=".ToDoDetailsActivity"
             android:label="@string/title_activity_to_do_details"

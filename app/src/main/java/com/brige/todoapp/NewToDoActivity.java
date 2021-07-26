@@ -2,6 +2,7 @@ package com.brige.todoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +17,14 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class NewToDoActivity extends AppCompatActivity {
 
+
+    EditText editTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_new_to_do);
 
         Button btnCancel = findViewById(R.id.btnCancel);
@@ -28,17 +34,11 @@ public class NewToDoActivity extends AppCompatActivity {
         ImageView firstFile = findViewById(R.id.imgFirstFile);
         ImageView secondFile = findViewById(R.id.imgSecondFile);
 
-        EditText editTitle = findViewById(R.id.editTitle);
+        editTitle = findViewById(R.id.editTitle);
         TextInputEditText editDetails = findViewById(R.id.editDetails);
         TextInputEditText editSubtasks = findViewById(R.id.editSubtasks);
 
         Note newNote = new Note();
-
-
-
-
-
-
 
 
         btnCreateTasks.setOnClickListener(new View.OnClickListener() {
@@ -47,15 +47,60 @@ public class NewToDoActivity extends AppCompatActivity {
 
                 newNote.setTitle(editTitle.getText().toString());
                 newNote.setDescription(editDetails.getText().toString());
+                newNote.setId(1);
 
 
-                Toast.makeText(NewToDoActivity.this, newNote.getTitle() , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(NewToDoActivity.this, ToDoDetailsActivity.class);
+                intent.putExtra("TITLE", newNote.getTitle());
+                intent.putExtra("DETAILS", newNote.getDescription());
+                startActivity(intent);
 
 
-                Snackbar.make(v, newNote.getDescription(), Snackbar.LENGTH_LONG).show();
+
+
+
             }
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        if (editTitle.getText().toString().trim().isEmpty()){
+
+            Toast.makeText(this, "Nothing to save", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Note saved to draft", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

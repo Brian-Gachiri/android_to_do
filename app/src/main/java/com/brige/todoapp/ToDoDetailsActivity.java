@@ -11,8 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ToDoDetailsActivity extends AppCompatActivity {
+
+    CollapsingToolbarLayout toolBarLayout;
+    TextView txtDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +26,12 @@ public class ToDoDetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
 
         Button btnComplete = findViewById(R.id.btn_complete);
+        txtDetails = findViewById(R.id.txtDetails);
+
 
         btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,5 +49,18 @@ public class ToDoDetailsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (getIntent().hasExtra("TITLE")){
+            toolBarLayout.setTitle(getIntent().getStringExtra("TITLE"));
+        }
+        if (getIntent().hasExtra("DETAILS")){
+            txtDetails.setText(getIntent().getStringExtra("DETAILS"));
+        }
     }
 }

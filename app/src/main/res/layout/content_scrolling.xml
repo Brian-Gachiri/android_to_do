@@ -85,7 +85,7 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/txtDetails"
                     style="@style/TextAppearance.MaterialComponents.Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

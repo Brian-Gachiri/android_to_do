@@ -12,8 +12,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class ToDoActivity extends AppCompatActivity {
+
+    int numberOfSearches = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,17 @@ public class ToDoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         CardView singleCard = findViewById(R.id.card_single);
+
+        EditText inputSearch = findViewById(R.id.inputSearch);
+
+        inputSearch.setOnEditorActionListener((v, actionId, event)-> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                Toast.makeText(this, "Number of searches is:" + addNumbers(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        });
 
         singleCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,4 +60,12 @@ public class ToDoActivity extends AppCompatActivity {
         });
 
     }
+
+    public int addNumbers()
+    {
+
+        return numberOfSearches++;
+    }
+
+
 }

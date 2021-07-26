@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.brige.todoapp.auth.ui.login.LoginActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
