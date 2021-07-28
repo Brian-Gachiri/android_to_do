@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.brige.todoapp.R;
 import com.brige.todoapp.ToDoActivity;
+import com.brige.todoapp.auth.RegisterActivity;
 import com.brige.todoapp.auth.ui.login.LoginViewModel;
 import com.brige.todoapp.auth.ui.login.LoginViewModelFactory;
 import com.brige.todoapp.databinding.ActivityLoginBinding;
@@ -48,7 +49,12 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
+        final Button registerButton = binding.btnRegister;
         final ProgressBar loadingProgressBar = binding.loading;
+
+        registerButton.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterActivity.class));
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
