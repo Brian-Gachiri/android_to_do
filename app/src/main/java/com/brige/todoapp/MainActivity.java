@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPrefConfig myPreferenceStorage = new SharedPrefConfig(getApplicationContext());
+                SharedPrefConfig myPreferenceStorage = new SharedPrefConfig(MainActivity.this);
 
                 if(myPreferenceStorage.isLoggedIn()){
 

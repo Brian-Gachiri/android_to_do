@@ -11,28 +11,29 @@ import android.widget.Toast;
 import com.brige.todoapp.R;
 import com.brige.todoapp.ToDoActivity;
 import com.brige.todoapp.auth.ui.login.LoginActivity;
+import com.brige.todoapp.databinding.ActivityLoginBinding;
 import com.brige.todoapp.databinding.ActivityRegisterBinding;
 import com.brige.todoapp.settings.SharedPrefConfig;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private ActivityRegisterBinding binding;
     TextInputEditText inputName, inputNumber, inputPassword, inputConfirm, inputEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_register);
 
-        Button btnLogin = binding.btnLogin;
-        Button btnRegister = binding.btnRegister;
+        Button btnLogin = findViewById(R.id.btn_go_to_login);
+        Button btnRegister = findViewById(R.id.btn_register_user);
 
-        inputConfirm = binding.inputConfirm;
-        inputEmail = binding.inputEmail;
-        inputName = binding.inputName;
-        inputPassword = binding.inputPassword;
-        inputNumber = binding.inputNumber;
+        inputConfirm = findViewById(R.id.input_confirm);
+        inputEmail = findViewById(R.id.input_email);
+        inputName = findViewById(R.id.input_name);
+        inputPassword = findViewById(R.id.input_password);
+        inputNumber = findViewById(R.id.input_number);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +49,6 @@ public class RegisterActivity extends AppCompatActivity {
                 /**
                  * Adding function to register a user
                  */
-
                 registerUser();
             }
         });
@@ -66,8 +66,14 @@ public class RegisterActivity extends AppCompatActivity {
         number = inputNumber.getText().toString().trim();
         email = inputEmail.getText().toString().trim();
 
+        /**
+         * Code to add user detail to shared preferences
+         */
         SharedPrefConfig sharedPrefConfig = new SharedPrefConfig(RegisterActivity.this);
         sharedPrefConfig.setUserInfo(name, email, number, password);
+
+        //Mark the user as logged in
+        sharedPrefConfig.setLoggingInStatus(true);
 
         Toast.makeText(this, "User"+" "+ name+ " "+ "registered successfully.", Toast.LENGTH_SHORT).show();
 
