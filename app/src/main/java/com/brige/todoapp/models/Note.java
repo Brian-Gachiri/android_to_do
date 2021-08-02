@@ -1,8 +1,14 @@
 package com.brige.todoapp.models;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+
+@Entity
 public class Note {
 
-    private int id;
+    @Id
+    private long id;
+
     private String title;
     private String description;
     private String created_at;
@@ -15,15 +21,16 @@ public class Note {
     public Note() {
     }
 
+
     /**Getters and setters
      *
      */
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
