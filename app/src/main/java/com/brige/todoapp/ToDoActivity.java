@@ -23,15 +23,23 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
+import io.objectbox.Box;
+
 public class ToDoActivity extends AppCompatActivity {
 
     int numberOfSearches = 0;
     TextView welcomeText;
 
+    private Box<Note> notesBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
+
+        notesBox = ObjectBox.get().boxFor(Note.class);
+
+        Toast.makeText(this, "You have " + notesBox.count() + " To dos.", Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

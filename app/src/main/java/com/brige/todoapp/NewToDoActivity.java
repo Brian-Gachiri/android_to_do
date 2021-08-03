@@ -15,10 +15,13 @@ import com.brige.todoapp.models.Note;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import io.objectbox.Box;
+
 public class NewToDoActivity extends AppCompatActivity {
 
 
     EditText editTitle;
+    private Box<Note> notesBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,10 @@ public class NewToDoActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_new_to_do);
+
+        notesBox = ObjectBox.get().boxFor(Note.class);
+
+
 
         Button btnCancel = findViewById(R.id.btnCancel);
         Button btnCreateTasks = findViewById(R.id.btnCreateTask);
@@ -47,7 +54,8 @@ public class NewToDoActivity extends AppCompatActivity {
 
                 newNote.setTitle(editTitle.getText().toString());
                 newNote.setDescription(editDetails.getText().toString());
-                newNote.setId(1);
+
+                notesBox.put(newNote); //creates a new note in the database
 
 
                 Intent intent = new Intent(NewToDoActivity.this, ToDoDetailsActivity.class);
