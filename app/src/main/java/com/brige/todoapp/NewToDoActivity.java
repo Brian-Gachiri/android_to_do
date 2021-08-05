@@ -55,12 +55,12 @@ public class NewToDoActivity extends AppCompatActivity {
                 newNote.setTitle(editTitle.getText().toString());
                 newNote.setDescription(editDetails.getText().toString());
 
-                notesBox.put(newNote); //creates a new note in the database
+                long id = notesBox.put(newNote); //creates a new note in the database
+
 
 
                 Intent intent = new Intent(NewToDoActivity.this, ToDoDetailsActivity.class);
-                intent.putExtra("TITLE", newNote.getTitle());
-                intent.putExtra("DETAILS", newNote.getDescription());
+                intent.putExtra("ID", id);
                 startActivity(intent);
 
 
@@ -111,4 +111,7 @@ public class NewToDoActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
+
 }
