@@ -15,6 +15,8 @@ import com.brige.todoapp.models.Note;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Date;
+
 import io.objectbox.Box;
 
 public class NewToDoActivity extends AppCompatActivity {
@@ -22,6 +24,9 @@ public class NewToDoActivity extends AppCompatActivity {
 
     EditText editTitle;
     private Box<Note> notesBox;
+    TextInputEditText editDetails, editSubtasks;
+    Note newNote;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +47,16 @@ public class NewToDoActivity extends AppCompatActivity {
         ImageView secondFile = findViewById(R.id.imgSecondFile);
 
         editTitle = findViewById(R.id.editTitle);
-        TextInputEditText editDetails = findViewById(R.id.editDetails);
-        TextInputEditText editSubtasks = findViewById(R.id.editSubtasks);
+        editDetails = findViewById(R.id.editDetails);
+        editSubtasks = findViewById(R.id.editSubtasks);
 
-        Note newNote = new Note();
+
+        btnCancel.setOnClickListener(v ->{
+
+            onBackPressed();
+            finish();
+
+        });
 
 
         btnCreateTasks.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +73,7 @@ public class NewToDoActivity extends AppCompatActivity {
                 Intent intent = new Intent(NewToDoActivity.this, ToDoDetailsActivity.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
+                finish();
 
 
 
@@ -84,12 +96,23 @@ public class NewToDoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        if (getIntent().hasExtra("ID")){
 
-    }
+            newNote = notesBox.get(getIntent().getLongExtra("ID", 0));
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+            editTitle.setText(newNote.getTitle());
+            editDetails.setText(newNote.getDescription());
+            newNote.setUpdated_at(new Date().toString());
+
+
+        }
+        else{
+            newNote = new Note();
+            newNote.setCreated_at(new Date().toString());
+            newNote.setUpdated_at(new Date().toString());
+
+        }
+
     }
 
     @Override
